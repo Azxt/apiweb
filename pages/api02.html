@@ -1,0 +1,74 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>每月國內主要金融指標</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<main class="api-content">
+		<h1>國內主要金融指標</h1>
+		<p>提供近幾月月底國內主要之金融指標</p>
+	</main>
+	<table border="1" class="styled-table">
+		<thead>
+			<tr>
+				<td>月別</td>
+				<td>貨幣供給額期底年增率-M1B</td>
+				<td>貨幣供給額期底年增率-M2</td>
+				<td>金價（美元／英兩）-國際現貨黃金價格</td>
+				<td>金價（美元／英兩）-台北</td>
+				<td>匯率（月底）-（新台幣／美元）</td>
+				<td>外匯存底（億美元）</td>
+				<td>利率（年息%）-金融業拆款</td>
+				<td>利率（年息%）-商業本票31-90天期</td>
+				<td>利率（年息%）-中央銀行重貼現率</td>
+				<td>利率（年息%）-債券市場（十年期中央政府公債）</td>
+				<td>證券（集中市場）-發行量加權股價指數（月底）</td>
+				<td>證券（集中市場）-成交值（億元）</td>
+			</tr>
+		</thead>
+		<tbody id="row"></tbody>
+	</table>
+</body>
+
+</html>
+<script>
+	$(document).ready(function () {
+
+		$.ajax({
+			url: "api02_data.json",
+			type: "get",
+			dataType: "json",
+			success: function (info) {
+				console.log(info.length);
+				total_len = info.length;
+
+				for (i = 0; i < total_len; i++) {
+					$("#row").append(
+						"<tr>" +
+						"<td>" + info[i]["月別"] + "</td>" +
+						"<td>" + info[i]["貨幣供給額期底年增率-M1B"] + "</td>" +
+						"<td>" + info[i]["貨幣供給額期底年增率-M2"] + "</td>" +
+						"<td>" + info[i]["金價（美元／英兩）-國際現貨黃金價格"] + "</td>" +
+						"<td>" + info[i]["金價（美元／英兩）-台北"] + "</td>" +
+						"<td>" + info[i]["匯率（月底）-（新台幣／美元）"] + "</td>" +
+						"<td>" + info[i]["外匯存底（億美元）"] + "</td>" +
+						"<td>" + info[i]["利率（年息%）-金融業拆款"] + "</td>" +
+						"<td>" + info[i]["利率（年息%）-商業本票31-90天期"] + "</td>" +
+						"<td>" + info[i]["利率（年息%）-中央銀行重貼現率"] + "</td>" +
+						"<td>" + info[i]["利率（年息%）-債券市場（十年期中央政府公債）"] + "</td>" +
+						"<td>" + info[i]["證券（集中市場）-發行量加權股價指數（月底）"] + "</td>" +
+						"<td>" + info[i]["證券（集中市場）-成交值（億元）"] + "</td>" +
+						"</tr>"
+					);
+				}
+			},
+			error: function (e) {
+				console.log("請求失敗");
+			}
+		});
+	});
+</script>

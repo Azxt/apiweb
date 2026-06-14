@@ -1,0 +1,68 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>國際主要股價指數</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<main class="api-content">
+		<h1>國際主要指數</h1>
+		<p>提供近幾月月底國際主要股價指數</p>
+	</main>
+	<table border="1" class="styled-table">
+		<thead>
+			<tr>
+				<td>月別</td>
+				<td>台灣-加權指數</td>
+				<td>台灣-上櫃指數</td>
+				<td>美國-那斯達克指數</td>
+				<td>美國-道瓊工業指數</td>
+				<td>日本-日經225指數</td>
+				<td>新加坡-海峽時報指數</td>
+				<td>南韓-綜合指數</td>
+				<td>倫敦-金融時報指數</td>
+				<td>中國-上海綜合指數</td>
+				<td>中國-香港恆生指數</td>
+			</tr>
+			</thead>
+			<tbody id="row"></tbody>
+	</table>
+</body>
+
+</html>
+<script>
+
+	$(document).ready(function () {
+		$.ajax({
+			url: "api03_data.json",
+			type: "get",
+			dataType: "json",
+			success: function (info) {
+				total_len = info.length;
+				for (i = 0; i < total_len; i++) {
+					$("#row").append(
+						"<tr>" +
+						"<td>" + info[i]["月別"] + "</td>" +
+						"<td>" + info[i]["台灣-加權指數"] + "</td>" +
+						"<td>" + info[i]["台灣-上櫃指數"] + "</td>" +
+						"<td>" + info[i]["美國-那斯達克指數"] + "</td>" +
+						"<td>" + info[i]["美國-道瓊工業指數"] + "</td>" +
+						"<td>" + info[i]["日本-日經225指數"] + "</td>" +
+						"<td>" + info[i]["新加坡-海峽時報指數"] + "</td>" +
+						"<td>" + info[i]["南韓-綜合指數"] + "</td>" +
+						"<td>" + info[i]["倫敦-金融時報指數"] + "</td>" +
+						"<td>" + info[i]["中國-上海綜合指數"] + "</td>" +
+						"<td>" + info[i]["中國-香港恆生指數"] + "</td>" +
+						"</tr>"
+					);
+				}
+			},
+			error: function (e) {
+				console.log("請求失敗");
+			}
+		});
+	});
+</script>

@@ -1,0 +1,63 @@
+/* 基礎變數設定 */
+:root {
+    --accent-color: #3b82f6;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+}
+
+/* 1. 基礎設定與修正遮擋 */
+body {
+    margin: 0;
+    padding-top: var(--nav-height); /* 重要：預留空間給頂部導覽列，防止內容被遮擋 */
+    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background-color: #f8fafc;
+    color: var(--text-primary);
+}
+
+/* 2. 標題樣式調整 */
+h3 {
+    text-align: center;
+    color: var(--text-primary);
+    margin: 20px 0;
+    font-size: 1.5rem;
+}
+
+/* 3. 核心：iframe 並排容器 */
+.iframe-container {
+    display: flex;            /* 啟用彈性佈局實現並排 */
+    flex-direction: row;      /* 確保橫向排列 */
+    justify-content: center;  /* 內容居中 */
+    gap: 20px;               /* 兩個視窗之間的間距 */
+    padding: 0 20px 40px 20px;
+    width: 100%;
+    box-sizing: border-box;   /* 防止 padding 撐破寬度 */
+}
+
+/* 4. iframe 視覺優化 */
+.iframe-container iframe {
+    flex: 1;                 /* 讓兩個視窗平均分配剩餘空間 */
+    max-width: 800px;        /* 視窗最大寬度 */
+    height: 650px;           /* 視窗高度 */
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;     /* 圓角化更有現代感 */
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* 加入精緻陰影 */
+    transition: transform 0.3s ease;
+}
+
+/* 滑鼠滑過 iframe 時的小特效 */
+.iframe-container iframe:hover {
+    transform: translateY(-5px);
+}
+
+/* 響應式：當手機螢幕太窄時，改為上下排列 */
+@media (max-width: 768px) {
+    .iframe-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .iframe-container iframe {
+        width: 100%;
+        max-width: 100%;
+    }
+}

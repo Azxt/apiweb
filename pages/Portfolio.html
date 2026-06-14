@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>API　資訊</title>
+		<link rel="stylesheet" type="text/css" href="../css/index.css">
+	</head>
+		
+	<body>
+		<nav class="main-nav">
+			<ul>
+				<li><a href="../index.html">首頁</a></li>		
+				<li><a href="about.html">關於我</a></li>
+				<li class="dropdown">
+					<a href="Portfolio.html" class="dropbtn">作品集</a>
+					<ul class="dropdown-content">
+						<li><a href="api01.html" target="apiContent">API01</a></li>
+						<li><a href="api02.html" target="apiContent">API02</a></li>
+						<li><a href="api03.html" target="apiContent">API03</a></li>
+						<li><a href="api04.html" target="apiContent">API04</a></li>
+						<li><a href="api05.html" target="apiContent">API05</a></li>
+					</ul>
+				</li>
+						<li><a href="conn.html">聯絡我</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<h1>作品集</h1>
+			<table style="width: 100%; border-collapse: collapse;">
+			<tr>
+				<td>
+					<div class="display-area">
+						<ul class="api-list">			
+							<li><a href="api01.html" target="apiContent">API01</a></li>
+							<li><a href="api02.html" target="apiContent">API02</a></li>
+							<li><a href="api03.html" target="apiContent">API03</a></li>
+							<li><a href="api04.html" target="apiContent">API04</a></li>
+							<li><a href="api05.html" target="apiContent">API05</a></li>
+						</ul>
+					</div>
+				</td>
+				<td style="width: 100%; vertical-align: top;">
+					<div class="display-area">
+					<iframe name="apiContent" id="apiContent" src="api01.html" style="width: 100%; height: 900px; border: none;"></iframe>
+					</div>
+				</td>
+			</tr>
+			
+		</main>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+			<script>
+				$(document).ready(function () {
+					// 1. 解析目前網址後方的參數 
+					const urlParams = new URLSearchParams(window.location.search);
+					const apiPage = urlParams.get('api');
+
+					// 2. 如果有抓到 api 參數，就動態改變 iframe 的 src 載入對應網頁
+					if (apiPage) {
+						$("#apiContent").attr("src", apiPage + ".html");
+					}
+				});
+			</script>
+	</body>
+</html>

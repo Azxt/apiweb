@@ -1,0 +1,80 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>獲取 API 資訊</title>
+	<link rel="preconnect" href="https://api.rss2json.com">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body vlink="beige" link="blue" alink="pink" background="images/Mchine.png" no-repeat center center fixed;
+	background-size: cover;>
+
+	<nav class="main-nav">
+		<ul>
+			<li><a href="index.html">首頁</a></li>
+			<li><a href="pages/about.html">關於我</a></li>
+			<li class="dropdown">
+				<a href="pages/Portfolio.html" class="dropbtn">作品集</a>
+				<ul class="dropdown-content">
+					<li><a href="pages/Portfolio.html?api=api01" >API01 資訊</a></li>
+					<li><a href="pages/Portfolio.html?api=api02" >API02 資訊</a></li>
+					<li><a href="pages/Portfolio.html?api=api03" >API03 資訊</a></li>
+					<li><a href="pages/Portfolio.html?api=api04" >API04 資訊</a></li>
+					<li><a href="pages/Portfolio.html?api=api05" >API05 資訊</a></li>
+				</ul>
+			</li>
+			<li><a href="pages/conn.html">聯絡我</a></li>
+		</ul>
+	</nav>
+	<div class="marquee-wrapper">
+		<div class="marquee-content">
+			<a href="https://github.com/Azxt/azxt.github.io" target="_blank">歡迎來到阿忠的資訊網站</a>
+		</div>
+	</div>
+	<section class="api-hero-section">
+		<div class="main-container">
+			<div class="left-side">
+				<div class="weather-card">
+					<h2 id="city">--</h2>
+					<div class="weather-info">
+						<span id="temp">--</span>°C
+						<p id="description">同步中...</p>
+					</div>
+					<div class="progress-container">
+						<div id="progress-bar"></div>
+					</div>
+					<div class="api-tag">GET /weather-api</div>
+				</div>
+			</div>
+			<div class="right-side">
+				<h1 class="title">我的作品專案</h1>
+				<p class="subtitle">展示實時數據抓取功能。左側卡片透過 JavaScript 定時向外部 API 發送 GET 請求。</p>
+				<div class="tech-tags">
+					<span class="tag">#JavaScript</span>
+					<span class="tag">#API_Fetch</span>
+					<span class="tag">#Async_Await</span>
+				</div>
+			</div>
+		</div>
+	</section>
+	<main>
+		<section class="iframe-display-section">
+			<h2>每日新聞</h2>
+
+			<div id="news-grid" class="news-container">
+				<div class="news-card skeleton-card">
+					<div class="news-image-wrapper skeleton"></div>
+					<div class="news-content">
+						<div class="skeleton" style="height: 20px; width: 60%; margin-bottom: 10px;"></div>
+						<div class="skeleton" style="height: 30px; width: 90%; margin-bottom: 10px;"></div>
+						<div class="skeleton" style="height: 60px; width: 100%;"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+		<script src="javascript/index.js" defer></script>
+	</body>
+
+	</html>

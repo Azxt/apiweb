@@ -1,0 +1,68 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>新制勞工退休基金</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<main class="api-content">
+		<h1>新制勞工退休基金每月經營概況</h1>
+		<p>提供近幾月月底新制勞工退休基金之規模、收益數、收益率等資料</p>
+	</main>
+	<table border="1" class="styled-table">
+		<thead>
+			<tr>
+				<td>月別</td>
+				<td>基金運用餘額（金額）</td>
+				<td>基金淨值（金額）</td>
+				<td>基金收益數（金額）</td>
+				<td>委託經營家數-國內</td>
+				<td>委託經營家數-國外</td>
+				<td>收益率</td>
+				<td>保證收益率</td>
+			</tr>
+		</thead>
+		<tbody id="row"></tbody>
+	</table>
+</body>
+
+</html>
+<script>
+
+	$(document).ready(function () {
+
+		<!--$("#row").html("<tr><td>ABC</td><td>123</td></tr>");-->
+		$.ajax({
+			url: "api05_data.json",
+			type: "get",
+			dataType: "json",
+			success: function (info) {
+				console.log(info.length);
+				total_len = info.length;
+
+				for (i = 0; i < total_len; i++) {
+					$("#row").append(
+						"<tr>" +
+						"<td>" + info[i]["月別"] + "</td>" +
+						"<td>" + info[i]["基金運用餘額（金額）"] + "</td>" +
+						"<td>" + info[i]["基金淨值（金額）"] + "</td>" +
+						"<td>" + info[i]["基金收益數（金額）"] + "</td>" +
+						"<td>" + info[i]["委託經營家數-國內"] + "</td>" +
+						"<td>" + info[i]["委託經營家數-國外"] + "</td>" +
+						"<td>" + info[i]["收益率"] + "</td>" +
+						"<td>" + info[i]["保證收益率"] + "</td>" +
+						"</tr>"
+					);
+				}
+			},
+			error: function (e) {
+				console.log("請求失敗");
+
+
+			}
+		});
+	});
+</script>

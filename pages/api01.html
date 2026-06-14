@@ -1,0 +1,64 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>空氣品質預報</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<main class="api-content">
+		<h1>空氣品質預報</h1>
+		<p>根據環境部最新氣象及空氣品質模式模擬資料研判，每日3次預報本島及離島隔日空氣品質。<br>
+			本部每日10:30、16:30及22:00發布空氣品質預報。</p>
+	</main>
+	<table border="1" class="styled-table">
+		<thead>
+			<tr>
+				<th>空品區名稱</th>
+				<th>預報日期</th>
+				<th>發布時間</th>
+				<th>主要污染物名稱</th>
+				<th>空氣品質指標預報值</th>
+				<th>次要污染物名稱</th>
+				<th>次要污染物指標預報值</th>
+				<th>預報文字</th>
+			</tr>
+		</thead>
+		<tbody id="row"></tbody>
+	</table>
+</body>
+
+</html>
+<script>
+
+	$(document).ready(function () {
+		$.ajax({
+			url: "https://data.moenv.gov.tw/api/v2/aqf_p_01?api_key=4c89a32a-a214-461b-bf29-30ff32a61a8a&limit=1000&sort=publishtime%20desc&format=JSON",
+			type: "get",
+			dataType: "json",
+			success: function (info) {
+				total_len = info.length;
+				for (i = 0; i < total_len; i++) {
+					$("#row").append(
+						"<tr>" +
+						"<td>" + info[i].area + "</td>" +
+						"<td>" + info[i].forecastdate + "</td>" +
+						"<td>" + info[i].publishtime + "</td>" +
+						"<td>" + info[i].majorpollutant + "</td>" +
+						"<td>" + info[i].aqi + "</td>" +
+						"<td>" + info[i].minorpollutant + "</td>" +
+						"<td>" + info[i].minorpollutantaqi + "</td>" +
+						"<td>" + info[i].content + "</td>" +
+						"</tr>"
+					);
+
+				}
+			},
+			error: function (e) {
+				console.log("請求失敗");
+			}
+		});
+	});
+</script>

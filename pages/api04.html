@@ -1,0 +1,70 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>主要國家貨幣</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<main class="api-content">
+		<h1>國際主要國家貨幣每月匯率概況</h1>
+		<p>提供近幾月月底我國與主要貿易對手通貨對美元之匯率概況</p>
+	</main>
+	<table border="1" class="styled-table">
+		<thead>
+			<tr>
+				<td>月別</td>
+				<td>新台幣（匯率）</td>
+				<td>人民幣（匯率）</td>
+				<td>日圓（匯率）</td>
+				<td>韓元（匯率）</td>
+				<td>新加坡元（匯率）</td>
+				<td>歐元（匯率）</td>
+				<td>英鎊（匯率）</td>
+				<td>澳幣（匯率）</td>
+			</tr>
+		</thead>
+		<tbody id="row"></tbody>
+	</table>
+</body>
+
+</html>
+<script>
+
+	$(document).ready(function () {
+
+		<!--$("#row").html("<tr><td>ABC</td><td>123</td></tr>");-->
+		$.ajax({
+			url: "api04_data.json",
+			type: "get",
+			dataType: "json",
+			success: function (info) {
+				console.log(info.length);
+				total_len = info.length;
+
+				for (i = 0; i < total_len; i++) {
+					$("#row").append(
+						"<tr>" +
+						"<td>" + info[i]["月別"] + "</td>" +
+						"<td>" + info[i]["新台幣（匯率）"] + "</td>" +
+						"<td>" + info[i]["人民幣（匯率）"] + "</td>" +
+						"<td>" + info[i]["日圓（匯率）"] + "</td>" +
+						"<td>" + info[i]["韓元（匯率）"] + "</td>" +
+						"<td>" + info[i]["新加坡元（匯率）"] + "</td>" +
+						"<td>" + info[i]["歐元（匯率）"] + "</td>" +
+						"<td>" + info[i]["英鎊（匯率）"] + "</td>" +
+						"<td>" + info[i]["澳幣（匯率）"] + "</td>" +
+						"</tr>"
+					);
+				}
+			},
+			error: function (e) {
+				console.log("請求失敗");
+
+
+			}
+		});
+	});
+</script>
